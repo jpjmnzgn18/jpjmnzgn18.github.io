@@ -73,4 +73,4 @@ After that, the workflow is:
 ### **Expected outputs**
 ![output](https://raw.githubusercontent.com/jpjmnzgn18/docs/main/assets/output_example.png)
 
-[View the Terrain Map](https://raw.githubusercontent.com/jpjmnzgn18/docs/main/assets/terrain_map.html)
+[View the Terrain Map](https://jpjmnzgn18.github.io/docs/terrain_map.html)
