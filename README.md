@@ -1,4 +1,4 @@
-# **jpjmnzgn18.github.io**
+# **Juan Pablo Jimenez Gonzalez**
 # Adv GIS course final project site
 ## Surface analysis tool
 ### - Why would you want to use this tool?
