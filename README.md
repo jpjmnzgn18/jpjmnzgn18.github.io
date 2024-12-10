@@ -32,6 +32,71 @@ After that, the workflow is:
 ### **What should I consider?**
 - Consider generating a new environment first, then installing the appropriate modules and check for compatibility between them. This script was created installing them with conda install -c conda-forge.
 
-### **Outputs example**
+### **Python code sections**
 
+```python
+
+# Conditions depending on the input
+
+if input_type == 'dem':
+    # User input for DEM processing
+    input_dem = input("Enter the full path to the input DEM file (e.g., 'C:/data/dem.tif'): ").strip()
+    output_folder = input("Enter the full path to the output folder (e.g., 'C:/data/output/'): ").strip()
+    slope_units = input("Enter the slope units ('degrees' or 'percent'): ").strip().lower()
+
+    # Validate slope units
+    if slope_units not in ['degrees', 'percent']:
+        print("Invalid slope_units input. Defaulting to 'degrees'.")
+        slope_units = 'degrees'
+
+    # Validate DEM file existence
+    if not os.path.exists(input_dem):
+        raise FileNotFoundError(f"The specified DEM file does not exist: {input_dem}")
+
+    # Run raster generation
+    generate_rasters(input_dem, output_folder, slope_units)
+
+elif input_type == 'contour lines':
+    # Contour lines handling
+    contour_file = input("Enter the full path to the contour lines file (e.g., C:/data/contours.shp): ").strip()
+    output_dem = input("Enter the full path to the output DEM file (e.g., C:/data/output_dem.tif): ").strip()
+    cell_size = float(input("Enter the desired cell size for the DEM (e.g., 10.0): ").strip())
+    
+    # Load shapefile and display attributes
+    try:
+        gdf = gpd.read_file(contour_file)
+        print("Shapefile opened successfully.")
+        print(f"Layer name: {os.path.basename(contour_file)}")
+        print(f"EPSG code: {gdf.crs}")
+        print(f"Number of rows: {len(gdf)}")
+        print(f"Geometry type: {gdf.geom_type.unique()}")
+        print(f"Columns (fields) in the attribute table: {list(gdf.columns)}")
+
+        # User selects the elevation field
+        elev_field = input("Please type the name of the elevation field: ").strip()
+        if elev_field not in gdf.columns:
+            raise ValueError(f"Field '{elev_field}' not found in the attribute table.")
+
+    except Exception as e:
+        print(f"Error processing shapefile: {e}")
+        raise
+
+    # Generate DEM
+    generated_dem = generate_dem_from_contours(contour_file, output_dem, cell_size, elev_field)
+
+    # Proceed with terrain analysis
+    output_folder = input("Enter the full path to the output folder (e.g., C:/data/output/): ").strip()
+    slope_units = input("Enter the slope units ('degrees' or 'percent'): ").strip().lower()
+    
+    if slope_units not in ['degrees', 'percent']:
+        print("Invalid slope_units input. Defaulting to 'degrees'.")
+        slope_units = 'degrees'
+
+    generate_rasters(generated_dem, output_folder, slope_units)
+
+else:
+    print("Invalid input. Please enter 'DEM' or 'contour lines'.")
+```
+### **Expected outputs**
 ![output](https://raw.githubusercontent.com/jpjmnzgn18/docs/main/assets/output_example.png)
+
