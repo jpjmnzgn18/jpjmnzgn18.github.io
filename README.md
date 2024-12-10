@@ -29,8 +29,9 @@ After that, the workflow is:
 6. Generate Terrain Rasters
 7. Save Output Rasters
 
-### What should I consider?
+### **What should I consider?**
 - Consider generating a new environment first, then installing the appropriate modules and check for compatibility between them. This script was created installing them with conda install -c conda-forge.
 
-### - Outputs example
+### **Outputs example**
 
+![output](https://raw.githubusercontent.com/jpjmnzgn18/docs/main/assets/output_example.png)
