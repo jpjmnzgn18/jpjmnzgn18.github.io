@@ -1,7 +1,7 @@
 # **Juan Pablo Jimenez Gonzalez**
 ### jpjmnzgn18.github.io
 # **Adv GIS course final project site**
-![hillshade](assets/hillshade.jpg](https://raw.githubusercontent.com/jpjmnzgn18/docs/main/assets/hillshade.jpg)
+![hillshade](https://raw.githubusercontent.com/jpjmnzgn18/docs/main/assets/hillshade.jpg)
 ### Access the scripts: [adv GIS repository](https://github.com/jpjmnzgn18/GIS_Python.git)
 ## **Surface analysis tool**
 ### **Why would you want to use this tool?**
